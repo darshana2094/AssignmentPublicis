@@ -11,6 +11,7 @@ import Combine
 @MainActor
 final class UserListViewModel: ObservableObject {
     
+    //MARK: Properties
     @Published var users: [User]?
     @Published var loadingState = ErrorLoadingState()
     @Published var isNetworkAvailable: Bool = true
@@ -20,21 +21,21 @@ final class UserListViewModel: ObservableObject {
     private var networkMonitor = NetworkMonitor.shared
     private var loginSubscription = Set<AnyCancellable>()
     private var networkMonitorSubscription = Set<AnyCancellable>()
-
     
+    //MARK: Intialiser
     init(userUseCase: UsersUseCaseProtocol) {
         
         self.userUseCase = userUseCase
         
+        //Check for network connection
         networkMonitor.$isConnected.sink { [weak self] isConnected in
             self?.isNetworkAvailable = isConnected
-
+            
         }
         .store(in: &networkMonitorSubscription)
     }
     
     func getUsers() async {
-    
         
         self.loadingState.updateLoadingState(isLoading: true, isSuccess: false)
         

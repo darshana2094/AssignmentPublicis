@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct UserDetailsCard: View {
+    
     let user: User
     
     var body: some View {
@@ -21,10 +22,10 @@ struct UserDetailsCard: View {
                 )
             
             VStack(alignment: .leading, spacing: 10) {
-                detailRow(title: "Name", value: user.name)
-                detailRow(title: "Email", value: user.email)
-                detailRow(title: "Address", value: "\(user.address.street), \(user.address.city), \(user.address.zipcode)")
-                detailRow(title: "Company", value: user.company.name)
+                detailRow(title: StringConstants.nameText, value: user.name)
+                detailRow(title: StringConstants.emailText, value: user.email)
+                detailRow(title: StringConstants.addressText, value: "\(user.address.street), \(user.address.city), \(user.address.zipcode)")
+                detailRow(title: StringConstants.companyText, value: user.company.name)
             }
             .padding()
         }
@@ -48,8 +49,6 @@ struct UserDetailsCard: View {
     }
 }
 
-
-  
 #Preview {
     UserDetailsCard(user: User(
         id:1,

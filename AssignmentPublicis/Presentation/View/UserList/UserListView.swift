@@ -9,6 +9,8 @@ import SwiftUI
 
 
 struct UserListView: View {
+    
+    //MARK: Properties
     @StateObject var userListViewModel: UserListViewModel
     @State private var showProgressView = true
     
